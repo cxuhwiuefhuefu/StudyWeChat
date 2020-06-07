@@ -5,6 +5,10 @@ var UserModel = require('../db/models/UserModel');
 // 引入加密的模块  前提 npm i sha1
 var sha1 = require('sha1');
 
+var sign = require('../utils/sign');
+
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });  /* 当以get方式请求我们根路径的时候 通过一个render方法下发一个index页面  */
@@ -32,6 +36,17 @@ router.get('/auth', function(req, res) {
   }else {
     res.send('Error!!!!');
   }
+})
+
+
+// 请求这个接口的时候 下发验证的数据包
+router.get("/jsapi", async function(req, res) {
+  console.log('reg11111111111111', req);
+  let url = decodeURIComponent(req.query.url); // 重新解码变成URL地址
+  console.log('url', url);
+  let conf = await sign(url);
+  console.log('conf', conf);
+  res.send(conf); // 下发数据包
 })
 
 

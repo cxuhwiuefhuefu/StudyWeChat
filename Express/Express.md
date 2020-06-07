@@ -157,3 +157,33 @@ npm i mongoose 安装mongoose模块到这个项目里面去
 新建models文件夹UserModel.js 里面存放所有的 我们用来去操作数据库的一些方法模型 里面可以学存储用户信息
 
 npm i sha1  安装模块
+
+
+
+
+## 鉴权所需要的jsapi-ticket
+utils 鉴权相关的代码
+
+封装一个方法向这个借口发起一个请求
+https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
+
+为了后面本地测试方便 我们可以将IP也在微信公众号的白名单里面 需要把本地的IP加入微信的白名单  
+
+为什么后端拿到token和tiket 为什么前端拿不到这些获取的信息呢 且是空对象
+
+如果有同步的代码 在方法前面async 在调用方法的时候加上await 完全保证只有拿到结果才会进入到下面 不然结果还没拿到就扔出去了
+
+为什么url是undefined？是因为我直接访问它了 如何测试它 请求拿到index.html这个页面 然后将中国页面帮我们去请求这些数据
+
+
+
+
+## 鉴权接口在线部署和测试
+用户请求jsapi的接口能够拿到wx.config()初始化所需要的全部信息 接下来是将信息填写wx.config里面去 然后wx.ready之后测试调用这些方法
+
+点击二维码扫描这行字的时候 我们就能够在微信的公众号平台环境下调二维码
+
+将所有进行微信配置的代码迁移到我们vue里面去
+
+认证费
+
